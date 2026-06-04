@@ -29,63 +29,89 @@
 > Note: All CSS styles MUST use the Tokens below; hardcoded color values and px values are forbidden. For missing components, derive designs using the same Token system — do NOT add custom variables.
 
 ## 1.1 Color System
-### Primary Colors (Business actions, highlighted buttons, selected states, nav highlights)
-- Primary-100: Light background #E6F0FF (Used for table row hover states, token tags background, active inline link text blocks)
-- Primary-300: Light hover #94C1FF (Used for default button borders on hover, sub-interactive state highlights)
-- Primary-500: Standard primary (buttons / tag highlights) #1677FF (Used for primary buttons, active tabs line, radio/checkbox checked status)
-- Primary-700: Dark hover #0F52BA (Used for primary button hover/active states, text link focus highlights)
-- Primary-900: Text highlight #062D66 (Used for deeply embedded operational action links, system brand text anchors)
+Extended global color variables for specialized menu typography scenarios and states.
 
-### Functional Status Colors
-- Success-500: Success, approved, completed #00B42A (Used for active metrics positive trends, approved badges, file upload completion progress)
-- Warning-500: Warning, pending #FF7D00 (Used for warning notification blocks, pending review badges, popconfirm alert icons)
-- Danger-500: Delete, error, failed #F53F3F (Used for destructive action buttons, form validation error texts, unread indicator counts)
-- Info-500: Info, auxiliary text #86909C (Used for standard informational alerts, default unselected icon fills)
+### Neutral / Global
+| Token | Color Value | Usage |
+| --- | --- | --- |
+| `--color-text-title` | `#09090b` | Main titles, card titles, key fields |
+| `--color-text-body` | `#27272a` | Body text, descriptions, default text |
+| `--color-text-muted` | `#86909c` | Secondary text, table headers, icons |
+| `--color-bg-layout` | `#fafafa` | Page base background, table header background |
+| `--color-bg-footer` | `#12161a` | Footer or dark block background |
 
-### Neutral Grays (Text, borders, backgrounds, dividers)
-- Neutral-0: Pure white #FFFFFF (Used for page cards background, dropdown list wraps, dialog inner contents, table body cell rows)
-- Neutral-100: Page background #F2F3F5 (Used for global portal background wrapper, table header row backgrounds, card tab unselected blocks)
-- Neutral-200: Card light gray background #E5E6EB (Used for inside border segments, collapse separators, disabled component backgrounds)
-- Neutral-300: Dividers, light borders #C9CDD4 (Used for global horizontal/vertical dividers, default button borders)
-- Neutral-400: Input default border #86909C (Used for input fields border, unselected checkbox/radio outer borders, placeholder text)
-- Neutral-500: Secondary text #4E5969 (Used for sub-descriptions, chart metadata fields, table headers text color, neutral status labels)
-- Neutral-600: Body text #272E3B (Used for grid core rows text data, default description paragraph segments)
-- Neutral-700: Title text #1D2129 (Used for card titles, standard modal main labels, unselected active page history crumbs)
-- Neutral-900: Deepest text, bold titles #0A0C10 (Used for page main title highlights, crucial analytical metric summaries, form group master headers)
+### Line & Fill
+| Token | Color Value | Usage |
+| --- | --- | --- |
+| `--color-border-2` | `#e5e6eb` | Default borders, dividers |
+| `--color-fill-2` | `#f4f4f5` | Hover state, secondary background fill |
+
+### Semantic Colors
+| Token | Color Value | Usage |
+| --- | --- | --- |
+| `--color-primary-6` | `#6366f1` | Interactive emphasis (Primary), main buttons, links |
+| `--color-primary-7` | `#4338ca` | Active/selected state, button hover |
+| `--color-success-6` | `#22c55e` | Success state icons |
+| `--color-success-7` | `#15803d` | Success state text, positive data (+14.5%) |
+| `--color-warning-6` | `#d97706` | Warning alerts, warning text and negative data (-2.1%) |
+
 
 ## 1.2 Font Specification
 ### Font Family
 - **Sans-Serif Stack (Proportional Text):** `Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`
 - **Monospace Stack (Data / IDs / Metrics):** `JetBrains Mono, SFMono-Regular, Menlo, Monaco, Consolas, monospace`
 
-### Font Size Levels & Core Typography Tokens (Strictly Prohibited to customize)
-| Level / Token | Font Size | Line Height | Weight | Letter Spacing | Usage / Tailwind Mapping |
-| ---- | ---- | ---- | ---- | ---- | -------- |
-| text-display-h1 | 24px | 32px (1.33) | 700 (Bold) | `-0.025em` | Page main title / `text-[24px] leading-[32px] font-bold tracking-[-0.025em] text-neutral-900` |
-| text-section-h2 | 18px | 24px (1.33) | 600 (SemiBold) | `-0.015em` | Module card title / `text-[18px] leading-[24px] font-semibold tracking-[-0.015em] text-neutral-900` |
-| text-card-h3 | 16px | 22px (1.38) | 600 (SemiBold) | `0` / `normal` | Sub-section / Modal Title / `text-[16px] leading-[22px] font-semibold tracking-normal text-neutral-900` |
-| text-form-h4 | 14px | 20px (1.43) | 500 (Medium) | `0` / `normal` | Inline title, strong block title / `text-[14px] leading-[20px] font-medium tracking-normal text-neutral-900` |
-| text-body-main | 14px | 20px (1.43) | 400 (Regular) | `0` / `normal` | **Core System Text (Grid data, default paragraph)** / `text-[14px] leading-[20px] font-normal text-neutral-600` |
-| text-body-bold | 14px | 20px (1.43) | 500 (Medium) | `0` / `normal` | Primary Keys inside cells, highlighted parameters / `text-[14px] leading-[20px] font-medium text-neutral-900` |
-| text-label-form | 12px | 16px (1.33) | 500 (Medium) | `0` / `normal` | Form Input Labels (Strictly above inputs) / `text-[12px] leading-[16px] font-medium text-neutral-700` |
-| text-caption | 12px | 16px (1.33) | 400 (Regular) | `0` / `normal` | Sub-descriptions, help notes, placeholders, grid headers / `text-[12px] leading-[16px] font-normal text-neutral-500` |
-| text-tiny | 11px | 14px (1.27) | 400 / 500 | `0` / `normal` | Mini labels, tag counts, charts, metadata / `text-[11px] leading-[14px] font-normal` |
+### ## Menu Typography Variables
+Our typography is divided into different hierarchies, utilizing `font-size`, `font-weight`, and `line-height` to distinguish information levels. Ensure adherence to the global fallback: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`.
 
-## 1.3 Spacing System (Base unit: 8px, absolute strict multi-grid)
-### Base Spacing Variables
-- Space-XS: 4px
-- Space-S: 8px
-- Space-M: 16px
-- Space-L: 24px
-- Space-XL: 32px
-- Space-XXL: 48px
+| Class / Mixin | Size | Line Height | Weight | Color | Scenario |
+| --- | --- | --- | --- | --- | --- |
+| **`heading-xl`** | 30px | 36px | 700 (Bold) | `var(--color-text-title)` | Page main titles (e.g., Good morning, Welcome!) |
+| **`heading-m`** | 17px | 22px | 700 (Bold) | `var(--color-text-title)` | Card titles, chart titles, module titles |
+| **`heading-s`** | 14px | 20px | 600 (Semi-Bold) | `var(--color-text-title)` | Key items in cards, subtitles, names, focus fields |
+| **`body-regular`**| 13px | 20px | 400 (Regular) | `var(--color-text-body)` | Body text, explanations, summaries, table content |
+| **`text-caption`**| 11px | 16px | 500 (Medium) | `var(--color-text-muted)` | Table headers, secondary labels, axes, pagination |
 
-### Component Inner Spacing Rules
-1. Form input padding: Vertical Space-XS (4px), Horizontal Space-S (8px)
-2. Card padding: Vertical Space-M (16px), Horizontal Space-M (16px)
-3. Table cell padding: Vertical 14px or 16px, Horizontal Space-M (16px)
-4. Modal header/footer padding: Vertical Space-M (16px), Horizontal Space-L (24px)
-5. Section margin: Space-L (24px)
+## Menu Spacing Variables
+Spacing specifications strictly based on a standard 4pt grid system.
+
+| Token | Value | Description / Usage |
+| --- | --- | --- |
+| `--spacing-xxs` | 4px | Tiny inner spacing, distance between icon and text |
+| `--spacing-xs` | 8px | Compact list spacing, gap between subtitle and body |
+| `--spacing-s` | 12px | Table row padding, intra-group paragraph spacing |
+| `--spacing-m` | 16px | Default component margin, table left/right padding |
+| `--spacing-l` | 24px | Default card padding, spacing between large modules |
+
+### ## Menu Layout Patterns
+Standard layout constraints derived from common business scenarios in the menu and documentation interface:
+
+### Feature List
+- **Usage**: Used for feature introduction pages to display core capabilities.
+- **Constraints**: Text is left-aligned with the icon, row spacing is tightly controlled (usually using 8px spacing, which corresponds to the compact `space-y-2` Tailwind utility).
+
+### Composite Content Card
+Composed of an Overline + Large Card Title + Body Paragraph + Button Group. Used for key recommendations or marketing conversions.
+- **Card Padding**: 24px (utilizing `p-6`)
+- **Overline to Title**: 8px (utilizing `mb-2`)
+- **Title to Body**: 12px (utilizing `mb-3`)
+- **Body to Actions**: 24px (utilizing `mt-6`)
+
+### Table Typography & Layout
+Constrain the font and spacing of elements within tables to maintain high-density data display and readability.
+- **Header Text**: Strictly use `text-caption` hierarchy (11px / Weight 500 / color: text-muted)
+- **Cell Content**: Strictly use `body-regular` hierarchy (13px / Weight 400 / color: text-body)
+- **Row Padding**: Top and bottom padding tightly controlled to `--spacing-s` (12px / mapped to `py-3` in Tailwind)
+- **Cell Padding X**: Left and right padding tightly controlled to `--spacing-m` (16px / mapped to `px-4` in Tailwind)
+- **Bg & Border**: The header background uses `#fafafa` and row dividers use `#e5e6eb`. Row hover states use `#f4f4f5` to provide clear interaction feedback.
+
+### Paragraph Blocks
+To provide a good reading experience for long texts, paragraphs need consistent spacing and text color specifications.
+- **Base Typography**: Use `body-regular`, providing default and consistent spacing between paragraphs.
+- **Hierarchy Representation**:
+  - **Primary**: Default main paragraph, presenting the most important continuous text.
+  - **Secondary**: Secondary paragraph text or supplementary explanations, using a weaker text color.
+  - **Disabled**: Paragraph representation for disabled states.
 
 ## 1.4 Border Radius
 | Variable | Value | Usage |
