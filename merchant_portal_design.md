@@ -3,11 +3,11 @@
 | Item | Content |
 | ---- | ---- |
 | Document Name | merchant_portal_design.md - Merchant Portal Design Specification |
-| Version | V1.0 |
-| Updated Date | 2026-06-02 |
+| Version | V1.1 (Advanced Production-Density Typography Standard) |
+| Updated Date | 2026-06-04 |
 | Reference UI | https://demo-remote.e-com365.com/vinnia/galaxiaslabs-dashboard/index.html |
 | Scope | All pages, new pages, and iteration pages of the Merchant Portal |
-| Users | Frontend Developers, AI Code Agents, UI Designers |
+| Users | Frontend Developers, AI Code Agents, UI Designers, CodeX |
 | Core Rules | All new components/pages MUST strictly follow the Design Tokens and component rules in this document. Custom colors, font sizes, border radius, shadows, and spacing are forbidden. Page layout and interactions must fully align with the reference HTML page. |
 
 ---
@@ -15,7 +15,7 @@
 # Table of Contents
 1. 【Basic Design Tokens】Global Variables (Color / Font / Spacing / Radius / Shadow / Border)
 2. 【Layout System Specification】Grid, Layout, Space, Divider
-3. 【Typography Specification】Full-level text rules
+3. 【Typography Specification】Full-level text rules & High-Density Visual Spacing
 4. 【General Basic Components】Button, Icon, BackTop, Breadcrumb, Dropdown, Menu, Pagination, Tabs
 5. 【Form Components】Autocomplete, Cascader, Checkbox, DatePicker, Form, Input, Radio, Select, SelectInput, Slider, Textarea, TimePicker, TreeSelect, Upload
 6. 【Data Display Components】Avatar, Badge, Calendar, Card, Collapse, Comment, Descriptions, Image, ImageViewer, List, Loading, Skeleton, Statistic, Table, Timeline, Tooltip
@@ -53,31 +53,25 @@
 - Neutral-700: Title text #1D2129
 - Neutral-900: Deepest text, bold titles #0A0C10
 
-### Transparent Mask Color
-- Mask-Bg: Modal background overlay rgba(0,0,0,0.45)
-
 ## 1.2 Font Specification
 ### Font Family
-`Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`
+- **Sans-Serif Stack (Proportional Text):** `Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`
+- **Monospace Stack (Data / IDs / Metrics):** `JetBrains Mono, SFMono-Regular, Menlo, Monaco, Consolas, monospace`
 
-### Font Size Levels (Global unified, custom sizes forbidden)
-| Level | Font Size | Line Height | Weight | Usage |
-| ---- | ---- | ---- | ---- | -------- |
-| H1 | 32px | 40px | 600 | Page top-level title (rarely used) |
-| H2 | 24px | 32px | 600 | Page main title, card header title |
-| H3 | 20px | 28px | 600 | Modal title, section subtitle |
-| H4 | 18px | 26px | 500 | Form group title, table header |
-| Body-L | 16px | 24px | 400 | Large body text, table content |
-| Body-M (Default) | 14px | 22px | 400 | Most page text, input default text |
-| Body-S | 12px | 18px | 400 | Auxiliary text, notes, small tips |
-| Caption | 11px | 16px | 400 | Tag small text, timestamp, footer copyright |
+### Font Size Levels & Core Typography Tokens (Strictly Prohibited to customize)
+| Level / Token | Font Size | Line Height | Weight | Letter Spacing | Usage / Tailwind Mapping |
+| ---- | ---- | ---- | ---- | ---- | -------- |
+| text-display-h1 | 24px | 32px (1.33) | 700 (Bold) | `-0.025em` | Page main title / `text-[24px] leading-[32px] font-bold tracking-[-0.025em] text-gray-900` |
+| text-section-h2 | 18px | 24px (1.33) | 600 (SemiBold) | `-0.015em` | Module card title / `text-[18px] leading-[24px] font-semibold tracking-[-0.015em] text-gray-900` |
+| text-card-h3 | 16px | 22px (1.38) | 600 (SemiBold) | `0` / `normal` | Sub-section / Modal Title / `text-[16px] leading-[22px] font-semibold tracking-normal text-gray-900` |
+| text-form-h4 | 14px | 20px (1.43) | 500 (Medium) | `0` / `normal` | Inline title, strong block title / `text-[14px] leading-[20px] font-medium tracking-normal text-gray-900` |
+| text-body-main | 14px | 20px (1.43) | 400 (Regular) | `0` / `normal` | **Core System Text (Grid data, default paragraph)** / `text-[14px] leading-[20px] font-normal text-gray-800` |
+| text-body-bold | 14px | 20px (1.43) | 500 (Medium) | `0` / `normal` | Primary Keys inside cells, highlighted parameters / `text-[14px] leading-[20px] font-medium text-gray-900` |
+| text-label-form | 12px | 16px (1.33) | 500 (Medium) | `0` / `normal` | Form Input Labels (Strictly above inputs) / `text-[12px] leading-[16px] font-medium text-gray-700` |
+| text-caption | 12px | 16px (1.33) | 400 (Regular) | `0` / `normal` | Sub-descriptions, help notes, placeholders, grid headers / `text-[12px] leading-[16px] font-normal text-gray-500` |
+| text-tiny | 11px | 14px (1.27) | 400 / 500 | `0` / `normal` | Mini labels, tag counts, charts, metadata / `text-[11px] leading-[14px] font-normal` |
 
-### Font Weight Enums
-- Regular: 400 (Normal body text)
-- Medium: 500 (Subtitles, input labels)
-- SemiBold: 600 (All headings)
-
-## 1.3 Spacing System (Base unit: 8px, all multiples of 8)
+## 1.3 Spacing System (Base unit: 8px, absolute strict multi-grid)
 ### Base Spacing Variables
 - Space-XS: 4px
 - Space-S: 8px
@@ -87,20 +81,20 @@
 - Space-XXL: 48px
 
 ### Component Inner Spacing Rules
-1. Form input padding: Vertical Space-XS, Horizontal Space-S
-2. Card padding: Vertical Space-M, Horizontal Space-M
-3. Table cell padding: Vertical Space-S, Horizontal Space-M
-4. Modal header/footer padding: Vertical Space-M, Horizontal Space-L
-5. Section margin: Space-L
+1. Form input padding: Vertical Space-XS (4px), Horizontal Space-S (8px)
+2. Card padding: Vertical Space-M (16px), Horizontal Space-M (16px)
+3. Table cell padding: Vertical 14px or 16px, Horizontal Space-M (16px)
+4. Modal header/footer padding: Vertical Space-M (16px), Horizontal Space-L (24px)
+5. Section margin: Space-L (24px)
 
 ## 1.4 Border Radius
 | Variable | Value | Usage |
 | ---- | ---- | -------- |
-| Radius-XS | 2px | Table cells, tiny tags |
-| Radius-S | 4px | Inputs, dropdowns, checkboxes, radios |
-| Radius-M (Default) | 6px | Buttons, cards, modals, drawers |
-| Radius-L | 8px | Large buttons, upload image containers |
-| Radius-Circle | 50% | Avatars, circular icon buttons |
+| Radius-XS | 2px | Table cell components, dynamic micro-tags |
+| Radius-S | 4px | Inputs, dropdown rows, checkbox/radio boxes, status badges |
+| Radius-M (Default) | 6px | Buttons, normal layout cards, modal wraps, slide drawers |
+| Radius-L | 8px | Image upload card placeholders, large feature panels |
+| Radius-Circle | 50% | User profiles, user avatars, action dot shortcuts |
 
 ## 1.5 Shadow
 ### Shadow-1 (Light shadow: dropdowns, menus, tooltips)
@@ -144,37 +138,47 @@ Global fixed 3-column structure (Sidebar + Header + Content)
 ## 2.4 Divider
 1. Horizontal divider: 1px height, Neutral-300, margin top/bottom Space-M
 2. Vertical divider: 1px width, Neutral-300, margin left/right Space-S
-3. Divider with text: Body-S, Neutral-500, line padding Space-M
+3. Divider with text: Text Style map to `text-tiny`, Neutral-500, line padding Space-M
 4. Custom divider color/thickness forbidden.
 
 ---
 
-# 3. Typography Specification
-## 3.1 Heading Rules
-1. Only H1–H4 allowed; no H5/H6
-2. Heading bottom margin: Space-M; top margin: Space-L
-3. All headings: 600 weight, no changes allowed.
+# 3. Typography Specification (High-Density Visual Spacing)
+> Note: This section governs the strict typographic layout rules required to preserve screen real estate while creating crisp informational hierarchy.
 
-## 3.2 Body Text Rules
-1. Default text: Body-M (14px) Neutral-600
-2. Secondary text: Body-S (12px) Neutral-500
-3. Link text: Primary-500, hover Primary-700, underline on hover only
-4. Forbidden: Pure black #000; use Neutral-900 for darkest text.
+## 3.1 Heading Rules & Tracking Control
+1. Only H1–H4 allowed; no H5/H6.
+2. Heading bottom margin: Space-M (16px); top margin: Space-L (24px).
+3. **Tracking Rules:**
+   - Large Headers (`text-display-h1`, `text-section-h2`): Must enforce negative tracking (`-0.025em` to `-0.015em`) via custom CSS or Tailwind tracking classes. This counters the optical tracking gaps caused by the anti-aliasing of medium-to-large geometric sans-serif fonts.
+4. **Visual Anchoring Margin:** Card Header Title to Card Subtitle/Description vertical gap must be exactly **Space-XS (4px)** or **6px** maximum (Tailwind `margin-bottom: 1px` to `2px` depending on paragraph line-heights).
 
-## 3.3 Special Text Styles
-- Bold text: 500 weight, keep original color
-- Error text: Danger-500 (form errors, failure tips)
-- Success text: Success-500 (success status)
-- Warning text: Warning-500 (risk warnings)
+## 3.2 Body Text & Legibility Rules
+1. Default text: `text-body-main` (14px) with tightly bounded line height `20px` (1.43 ratio), rendered in Neutral-600.
+2. Secondary text: `text-caption` (12px) with sharp line height `16px` (1.33 ratio), rendered in Neutral-500. Standard character tracking (`0` or `tracking-normal`) MUST be forced to ensure readability when packing multi-row strings.
+3. Link text: Primary-500, hover Primary-700, underline on hover only.
+4. **Color Boundaries:** Pure black (`#000000`) is strictly illegal. Use Neutral-900 (`#0A0C10`) for deep bold highlights and Neutral-700 (`#1D2129`) for default titles.
+
+## 3.3 Micro-Spacing & Text Vertical Margins 
+CodeX and AI Agents must strictly compute element boundaries based on the rules below:
+- **Form Label to Input Container:** Vertical structural gap must be exactly **Space-XS (4px)** (Tailwind `space-y-1` or `mb-1` on label block).
+- **Form Group Stack Row to Row:** Vertical partition distance must be exactly **Space-M (16px)** (Tailwind `space-y-4` on form panel).
+- **Section Structural Header to Block Content:** Vertical spacing must be **Space-M (16px)** or **Space-L (24px)** (Tailwind `mb-4` or `mb-6`).
+
+## 3.4 Numerical Typography & Alignment Semantics 
+- **Financial/Data Precision:** All metrics, performance stats, conversion rates, counts, and primary identifiers (IDs) MUST explicitly override the font family to the Monospace stack (`font-mono`). This guarantees structured numerical columns that do not wiggle visually during layout rendering.
+- **Alignment Rules:**
+  - Standard text strings, data tags, descriptive fields, names: **Left-aligned** (`text-left`).
+  - Monetary values, item quantities, analytics percentages, performance indicators: **Right-aligned** (`text-right`). This rule mandates strict alignment mapping across corresponding table column headers (`<th>`) and table body cells (`<td>`).
 
 ---
 
 # 4. General Basic Components
 ## 4.1 Button
 ### Sizes
-- Large: H40px, padding H20px, Body-L, Radius-L
-- Default: H32px, padding H16px, Body-M, Radius-M
-- Small: H24px, padding H12px, Body-S, Radius-S
+- Large: H40px, padding H20px, `text-body-large`, Radius-L
+- Default: H32px, padding H16px, `text-body-main`, Radius-M
+- Small: H24px, padding H12px, `text-caption`, Radius-S
 
 ### Types
 1. Primary: Bg Primary-500, text white; hover Primary-700; disabled opacity 0.5
@@ -201,14 +205,14 @@ Global fixed 3-column structure (Sidebar + Header + Content)
 4. Auto show after scroll 400px
 
 ## 4.4 Breadcrumb
-1. Text: Body-M, separator “/”, color Neutral-400
+1. Text: `text-body-main`, separator “/”, color Neutral-400
 2. History page: Neutral-500, hover Primary-500
 3. Current page: Neutral-700, no hover
 4. Bottom margin: Space-L
 
 ## 4.5 Dropdown
 1. Container: Radius-M, Shadow-2, bg Neutral-0, min-width 120px
-2. Item: H32px, padding H16px, Body-M
+2. Item: H32px, padding H16px, `text-body-main`
 3. Hover: bg Primary-100, text Primary-500
 4. Divider: 1px Neutral-200, margin Space-XS
 
@@ -222,7 +226,7 @@ Global fixed 3-column structure (Sidebar + Header + Content)
 1. White bg, text Neutral-600; selected text Primary-500, bottom 2px Primary-500
 
 ## 4.7 Pagination
-1. Text: Body-M, button H32px, Radius-S
+1. Text: `text-body-main`, button H32px, Radius-S
 2. Default: White bg, 1px Neutral-300 border; hover border Primary-300
 3. Current: Bg Primary-500, text white
 4. Top margin: Space-M, align right
@@ -244,19 +248,20 @@ Global fixed 3-column structure (Sidebar + Header + Content)
 
 # 5. Form Components
 ## General Form Rules
-1. Label: Body-M Medium 500 Neutral-600; vertical space Space-XS
-2. Required: Red * suffix (Danger-500)
-3. Input height: 32px, Radius-S, 1px Neutral-300 border
-4. Focus: Border Primary-500, glow 0 0 0 2px rgba(22,119,255,0.2)
-5. Disabled: Bg Neutral-100, text Neutral-400
-6. Error tip: Body-S Danger-500, margin Space-XS below input
-7. Form row vertical spacing: Space-L
+1. Label: `text-label-form` Token (12px, Medium 500, Neutral-700).
+2. Label Position: Placed strictly **above** the input field with an explicit vertical structural gap of exactly **Space-XS (4px)**.
+3. Required: Red * suffix (Danger-500)
+4. Input height: 32px, Radius-S, 1px Neutral-400 border. Content text mapping: `text-body-main` (14px).
+5. Focus: Border Primary-500, glow `box-shadow: 0 0 0 2px rgba(22,119,255,0.2)`
+6. Disabled: Bg Neutral-100, text Neutral-400
+7. Error tip: `text-caption` Danger-500, margin Space-XS below input
+8. Form row vertical spacing: Space-L (24px)
 
 ## 5.1 Input / SelectInput
-1. Padding: H Space-S, V Space-XS
-2. Placeholder: Neutral-400
+1. Padding: Horizontal Space-S (8px), Vertical Space-XS (4px)
+2. Placeholder: `text-caption` Neutral-400
 3. Prefix/suffix icon: 16px Neutral-400, space Space-XS
-4. Character count: Body-S Neutral-400 at bottom-right
+4. Character count: `text-caption` Neutral-400 at bottom-right
 
 ## 5.2 Textarea
 1. Default H80px, vertical resize only
@@ -266,7 +271,7 @@ Global fixed 3-column structure (Sidebar + Header + Content)
 ## 5.3 Checkbox
 1. Box 16×16px, Radius-XS, border Neutral-300
 2. Checked: Bg Primary-500, white check icon
-3. Checkbox-text gap: Space-S, text Body-M
+3. Checkbox-text gap: Space-S, text `text-body-main`
 
 ## 5.4 Radio
 1. Circle 16px, border Neutral-300; checked inner 8px Primary-500
@@ -295,12 +300,12 @@ Style same as Select; tree node hover bg Primary-100
 ## 5.10 Slider
 1. Track H4px, bg Neutral-200; selected track Primary-500
 2. Drag dot: 14px circle, white bg Shadow-1; hover 16px
-3. Scale text: Body-S Neutral-500
+3. Scale text: `text-caption` Neutral-500
 
 ## 5.11 Upload
 ### Drag Area
 1. 1px Neutral-300 dashed border, Radius-M, padding Space-XL
-2. Icon 24px Neutral-400, text Body-M Neutral-500
+2. Icon 24px Neutral-400, text `text-body-main` Neutral-500
 3. Hover: dashed border Primary-300, bg Primary-100
 
 ### File List Card
@@ -320,10 +325,13 @@ Style same as Select; tree node hover bg Primary-100
 2. Text avatar: Bg Primary-300, white text
 3. Status badge: Small dot at bottom-right
 
-## 6.2 Badge
-1. Number badge: Bg Danger-500, white Body-S, min-width 16px, Radius-Circle
+## 6.2 Badge / Status Tags
+1. Number badge: Bg Danger-500, white `text-caption`, min-width 16px, Radius-Circle
 2. Status dot: 8px circle (Success/Warning/Danger/Info)
-3. Text tag: H24px, padding H Space-S, Radius-S; default bg Neutral-200
+3. **Status Badges & Tags (高密度标签规范):**
+   - Text Style: Enforce `text-[12px] leading-none` (12px font size with direct explicit vertical string alignment).
+   - Component Padding: Vertical padding **4px**, Horizontal padding **8px** (`px-2 py-1`).
+   - Border Radius: Enforce exactly **Radius-S (4px)** micro-rounded corners. *Capsule / Full-rounded pills (`rounded-full`) are strictly banned*, except for unread indicator counts.
 
 ## 6.3 Card
 1. Bg Neutral-0, Radius-M, Shadow-2
@@ -332,14 +340,21 @@ Style same as Select; tree node hover bg Primary-100
 4. Footer: padding V Space-M, top 1px Neutral-200 border
 5. No-shadow card: White bg radius only (for inner modals)
 
-## 6.4 Table
-1. Radius-M, 1px Neutral-200 outer border
-2. Header: Bg Neutral-100, text Medium 500 Neutral-700
-3. Body: White bg, text Body-M Neutral-600; row hover bg Primary-100
-4. No zebra stripe by default
-5. Cell text vertical center; long text ellipsis, tooltip on hover
-6. Action buttons: Small size, gap Space-S
-7. Top filter: Inline form, with add/export buttons on right
+## 6.4 Table (High-Density Grid Layout)
+1. Radius-M, 1px Neutral-200 outer container border. Vertical grid separation lines between cells are forbidden.
+2. **Table Header Row (`<th>`):**
+   - Background Fill: Neutral-100 (`#F2F3F5`). 
+   - Typography: Map to `text-caption` Token (12px, Regular/Medium), Text Color `#4B5563` or Neutral-500.
+   - Sorting Icons: 12px, color aligned with header text.
+   - Alignment: Left-aligned for text/names, Right-aligned **only** for metrics, metrics parameters, percentages, and currencies.
+3. **Table Body Cell Rows (`<td>`):**
+   - Background Fill: Pure Neutral-0 (`#FFFFFF`). Row Hover Background transition state must be smooth Primary-100.
+   - Typography: Map to `text-body-main` (14px, Regular).
+   - Font for Numbers: Force Monospace stack (`font-mono`) tracking for operational alignment precision (Currencies, IDs, Timestamps).
+   - Height Padding: Vertical top/bottom padding must be strictly locked to **14px or 16px** (`py-3.5` or `py-4`) to produce high information density while retaining structural elegance.
+4. Cell text layout: Vertical alignment center. Long string text fallback uses standard ellipsis clip, opening full text block on hover via Tooltip.
+5. Action buttons within Rows: Small size button specifications, inline row layout gap: Space-S (8px).
+6. Top filter container header: Inline horizontal form, with secondary creation/export actions aligned to the far right.
 
 ## 6.5 Collapse
 1. Header H40px, padding H Space-M; hover bg Neutral-100
@@ -353,11 +368,12 @@ Style same as Select; tree node hover bg Primary-100
 
 ## 6.7 List
 1. Item padding V Space-M, bottom 1px Neutral-200 border
-2. Left avatar/icon, middle title + Body-S, right text button
-3. Wrap in Card
+2. Left avatar/icon, middle title + `text-caption`, right text button
+3. **No Vertical Visual Borders:** Separate text segments or metrics inside list items using light horizontal lines (`border-b border-gray-100`) or generous horizontal gaps (`space-x-6`), avoiding harsh visual column borders.
+4. Wrap in Card
 
 ## 6.8 Loading
-1. Local: 16px spinner, text Body-S Neutral-500
+1. Local: 16px spinner, text `text-caption` Neutral-500
 2. Global: 40px spinner, mask rgba(255,255,255,0.7)
 
 ## 6.9 Skeleton
@@ -366,17 +382,17 @@ Style same as Select; tree node hover bg Primary-100
 3. Full page skeleton for tables/cards
 
 ## 6.10 Statistic
-1. Value H2 SemiBold, title Body-S Neutral-500
+1. Value H2 SemiBold, title `text-caption` Neutral-500
 2. Trend: Success/Danger text with arrow
 3. Multiple stats: gap Space-M, wrap in Card
 
 ## 6.11 Timeline
 1. Left line 2px Neutral-200, node 12px status color
-2. Title Body-M Medium, content Body-S Neutral-500
+2. Title `text-body-main` Medium, content `text-caption` Neutral-500
 3. Vertical spacing Space-M
 
 ## 6.12 Tooltip
-1. Container Radius-S, Shadow-3, bg Neutral-700, white Body-S
+1. Container Radius-S, Shadow-3, bg Neutral-700, white `text-caption`
 2. Auto position, delay 200ms
 
 ## 6.13 Calendar
@@ -388,7 +404,7 @@ Same as DatePicker calendar, with month switch
 
 ## 6.15 Comment
 1. Top: Avatar + name + time
-2. Content: Body-M
+2. Content: `text-body-main`
 3. Bottom: Like/reply text buttons
 4. Bottom margin Space-M, divider 1px Neutral-200
 
@@ -410,7 +426,7 @@ Same as DatePicker calendar, with month switch
 
 ## 7.3 PopConfirm
 1. Based on Tooltip, with Confirm/Cancel small buttons
-2. Warning icon Warning-500, text Body-M
+2. Warning icon Warning-500, text `text-body-main`
 
 ## 7.4 Popup
 Base container same as Dropdown, padding Space-M
@@ -423,7 +439,7 @@ Base container same as Dropdown, padding Space-M
 ## 7.6 Notification
 1. Top-right stacked, auto close 5s
 2. White bg, Shadow-2, Radius-M
-3. Title Body-M Medium, content Body-S Neutral-500
+3. Title `text-body-main` Medium, content `text-caption` Neutral-500
 
 ---
 
@@ -440,31 +456,34 @@ All components MUST implement these 5 states — NO EXCEPTIONS:
 
 # 9. AI Code Generation Mandatory Clauses (Highest Priority)
 ## 9.1 Token Rules
-1. NO hardcoded colors, sizes, radius; use only Tokens in Chapter 1
-2. Derive new components from existing Tokens; no custom variables
+1. NO hardcoded colors, sizes, radius; use only Tokens in Chapter 1.
+2. Derive new components from existing Tokens; no custom variables.
 
-## 9.2 Layout Rules
-1. All pages MUST use Sider + Header + Content
-2. All forms/cards MUST use 24-column Grid
-3. All modules MUST be wrapped in Card
+## 9.2 Layout & Typography Rules
+1. All pages MUST use Sider + Header + Content.
+2. All forms/cards MUST use 24-column Grid.
+3. All modules MUST be wrapped in Card.
+4. **No Inline Font Styles:** CodeX/AI Agents are strictly forbidden from writing custom inline font-size or line-height declarations (e.g., `font-size: 13px` or `line-height: 18px`). All formatting must strictly reference the typography tokens defined in Section 1.2.
+5. **Enforce Text Color Semantics:** Primary dark text must be strictly bound to `#111827` or `#1A1A1A` (Neutral-900 / Neutral-700 equivalent ranges). Secondary muted descriptive text must be `#6B7280` or `#4B5563` (Neutral-500).
+6. **No Vertical Borders in Lists/Tables:** Data separation should rely purely on light horizontal divider borders or padded spatial layout rules (`space-x-*`).
 
 ## 9.3 Component Rules
-1. Strictly follow component specs in Chapters 4–7
-2. Derive missing components from similar styles
-3. Forms, tables, modals must 1:1 match reference UI
+1. Strictly follow component specs in Chapters 4–7.
+2. Derive missing components from similar styles.
+3. Forms, tables, modals must 1:1 match reference UI.
 
 ## 9.4 Output Rules
-1. Component-based code, reuse Tokens
-2. Add comments referencing spec sections
-3. Provide visual check list: color, size, radius, states
+1. Component-based code, reuse Tokens.
+2. Add comments referencing spec sections.
+3. Provide visual check list: color, size, radius, states.
 
 ## 9.5 Forbidden Actions (AI MUST NOT DO)
-1. No custom hex/rgba colors
-2. No non-8px spacing / custom font sizes
-3. No undefined radius/shadow
-4. No modified Layout/Grid rules
-5. No removed interaction states
-6. No third-party UI/icon libraries
+1. No custom hex/rgba colors.
+2. No non-8px spacing / custom font sizes.
+3. No undefined radius/shadow.
+4. No modified Layout/Grid rules.
+5. No removed interaction states.
+6. No third-party UI/icon libraries.
 
 ---
 
