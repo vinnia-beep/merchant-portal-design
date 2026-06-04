@@ -3,7 +3,7 @@
 | Item | Content |
 | ---- | ---- |
 | Document Name | merchant_portal_design.md - Merchant Portal Design Specification |
-| Version | V1.1 (Advanced Production-Density Typography Standard) |
+| Version | V1.2 (Advanced Production-Density Typography Standard) |
 | Updated Date | 2026-06-04 |
 | Reference UI | https://demo-remote.e-com365.com/vinnia/galaxiaslabs-dashboard/index.html |
 | Scope | All pages, new pages, and iteration pages of the Merchant Portal |
@@ -30,28 +30,28 @@
 
 ## 1.1 Color System
 ### Primary Colors (Business actions, highlighted buttons, selected states, nav highlights)
-- Primary-100: Light background #E6F0FF
-- Primary-300: Light hover #94C1FF
-- Primary-500: Standard primary (buttons / tag highlights) #1677FF
-- Primary-700: Dark hover #0F52BA
-- Primary-900: Text highlight #062D66
+- Primary-100: Light background #E6F0FF (Used for table row hover states, token tags background, active inline link text blocks)
+- Primary-300: Light hover #94C1FF (Used for default button borders on hover, sub-interactive state highlights)
+- Primary-500: Standard primary (buttons / tag highlights) #1677FF (Used for primary buttons, active tabs line, radio/checkbox checked status)
+- Primary-700: Dark hover #0F52BA (Used for primary button hover/active states, text link focus highlights)
+- Primary-900: Text highlight #062D66 (Used for deeply embedded operational action links, system brand text anchors)
 
 ### Functional Status Colors
-- Success-500: Success, approved, completed #00B42A
-- Warning-500: Warning, pending #FF7D00
-- Danger-500: Delete, error, failed #F53F3F
-- Info-500: Info, auxiliary text #86909C
+- Success-500: Success, approved, completed #00B42A (Used for active metrics positive trends, approved badges, file upload completion progress)
+- Warning-500: Warning, pending #FF7D00 (Used for warning notification blocks, pending review badges, popconfirm alert icons)
+- Danger-500: Delete, error, failed #F53F3F (Used for destructive action buttons, form validation error texts, unread indicator counts)
+- Info-500: Info, auxiliary text #86909C (Used for standard informational alerts, default unselected icon fills)
 
 ### Neutral Grays (Text, borders, backgrounds, dividers)
-- Neutral-0: Pure white #FFFFFF
-- Neutral-100: Page background #F2F3F5
-- Neutral-200: Card light gray background #E5E6EB
-- Neutral-300: Dividers, light borders #C9CDD4
-- Neutral-400: Input default border #86909C
-- Neutral-500: Secondary text #4E5969
-- Neutral-600: Body text #272E3B
-- Neutral-700: Title text #1D2129
-- Neutral-900: Deepest text, bold titles #0A0C10
+- Neutral-0: Pure white #FFFFFF (Used for page cards background, dropdown list wraps, dialog inner contents, table body cell rows)
+- Neutral-100: Page background #F2F3F5 (Used for global portal background wrapper, table header row backgrounds, card tab unselected blocks)
+- Neutral-200: Card light gray background #E5E6EB (Used for inside border segments, collapse separators, disabled component backgrounds)
+- Neutral-300: Dividers, light borders #C9CDD4 (Used for global horizontal/vertical dividers, default button borders)
+- Neutral-400: Input default border #86909C (Used for input fields border, unselected checkbox/radio outer borders, placeholder text)
+- Neutral-500: Secondary text #4E5969 (Used for sub-descriptions, chart metadata fields, table headers text color, neutral status labels)
+- Neutral-600: Body text #272E3B (Used for grid core rows text data, default description paragraph segments)
+- Neutral-700: Title text #1D2129 (Used for card titles, standard modal main labels, unselected active page history crumbs)
+- Neutral-900: Deepest text, bold titles #0A0C10 (Used for page main title highlights, crucial analytical metric summaries, form group master headers)
 
 ## 1.2 Font Specification
 ### Font Family
@@ -61,14 +61,14 @@
 ### Font Size Levels & Core Typography Tokens (Strictly Prohibited to customize)
 | Level / Token | Font Size | Line Height | Weight | Letter Spacing | Usage / Tailwind Mapping |
 | ---- | ---- | ---- | ---- | ---- | -------- |
-| text-display-h1 | 24px | 32px (1.33) | 700 (Bold) | `-0.025em` | Page main title / `text-[24px] leading-[32px] font-bold tracking-[-0.025em] text-gray-900` |
-| text-section-h2 | 18px | 24px (1.33) | 600 (SemiBold) | `-0.015em` | Module card title / `text-[18px] leading-[24px] font-semibold tracking-[-0.015em] text-gray-900` |
-| text-card-h3 | 16px | 22px (1.38) | 600 (SemiBold) | `0` / `normal` | Sub-section / Modal Title / `text-[16px] leading-[22px] font-semibold tracking-normal text-gray-900` |
-| text-form-h4 | 14px | 20px (1.43) | 500 (Medium) | `0` / `normal` | Inline title, strong block title / `text-[14px] leading-[20px] font-medium tracking-normal text-gray-900` |
-| text-body-main | 14px | 20px (1.43) | 400 (Regular) | `0` / `normal` | **Core System Text (Grid data, default paragraph)** / `text-[14px] leading-[20px] font-normal text-gray-800` |
-| text-body-bold | 14px | 20px (1.43) | 500 (Medium) | `0` / `normal` | Primary Keys inside cells, highlighted parameters / `text-[14px] leading-[20px] font-medium text-gray-900` |
-| text-label-form | 12px | 16px (1.33) | 500 (Medium) | `0` / `normal` | Form Input Labels (Strictly above inputs) / `text-[12px] leading-[16px] font-medium text-gray-700` |
-| text-caption | 12px | 16px (1.33) | 400 (Regular) | `0` / `normal` | Sub-descriptions, help notes, placeholders, grid headers / `text-[12px] leading-[16px] font-normal text-gray-500` |
+| text-display-h1 | 24px | 32px (1.33) | 700 (Bold) | `-0.025em` | Page main title / `text-[24px] leading-[32px] font-bold tracking-[-0.025em] text-neutral-900` |
+| text-section-h2 | 18px | 24px (1.33) | 600 (SemiBold) | `-0.015em` | Module card title / `text-[18px] leading-[24px] font-semibold tracking-[-0.015em] text-neutral-900` |
+| text-card-h3 | 16px | 22px (1.38) | 600 (SemiBold) | `0` / `normal` | Sub-section / Modal Title / `text-[16px] leading-[22px] font-semibold tracking-normal text-neutral-900` |
+| text-form-h4 | 14px | 20px (1.43) | 500 (Medium) | `0` / `normal` | Inline title, strong block title / `text-[14px] leading-[20px] font-medium tracking-normal text-neutral-900` |
+| text-body-main | 14px | 20px (1.43) | 400 (Regular) | `0` / `normal` | **Core System Text (Grid data, default paragraph)** / `text-[14px] leading-[20px] font-normal text-neutral-600` |
+| text-body-bold | 14px | 20px (1.43) | 500 (Medium) | `0` / `normal` | Primary Keys inside cells, highlighted parameters / `text-[14px] leading-[20px] font-medium text-neutral-900` |
+| text-label-form | 12px | 16px (1.33) | 500 (Medium) | `0` / `normal` | Form Input Labels (Strictly above inputs) / `text-[12px] leading-[16px] font-medium text-neutral-700` |
+| text-caption | 12px | 16px (1.33) | 400 (Regular) | `0` / `normal` | Sub-descriptions, help notes, placeholders, grid headers / `text-[12px] leading-[16px] font-normal text-neutral-500` |
 | text-tiny | 11px | 14px (1.27) | 400 / 500 | `0` / `normal` | Mini labels, tag counts, charts, metadata / `text-[11px] leading-[14px] font-normal` |
 
 ## 1.3 Spacing System (Base unit: 8px, absolute strict multi-grid)
@@ -254,13 +254,13 @@ CodeX and AI Agents must strictly compute element boundaries based on the rules 
 4. Input height: 32px, Radius-S, 1px Neutral-400 border. Content text mapping: `text-body-main` (14px).
 5. Focus: Border Primary-500, glow `box-shadow: 0 0 0 2px rgba(22,119,255,0.2)`
 6. Disabled: Bg Neutral-100, text Neutral-400
-7. Error tip: `text-caption` Danger-500, margin Space-XS below input
-8. Form row vertical spacing: Space-L (24px)
+7. Error tip: `text-caption` Danger-500, margin Space-XS (4px) strictly below input container
+8. Form row vertical spacing: Space-L (24px) (Distance from the bottom of one row's input/error-tip to the top of the next row's label)
 
 ## 5.1 Input / SelectInput
 1. Padding: Horizontal Space-S (8px), Vertical Space-XS (4px)
 2. Placeholder: `text-caption` Neutral-400
-3. Prefix/suffix icon: 16px Neutral-400, space Space-XS
+3. Prefix/suffix icon: 16px Neutral-400, space Space-XS (4px)
 4. Character count: `text-caption` Neutral-400 at bottom-right
 
 ## 5.2 Textarea
@@ -271,11 +271,11 @@ CodeX and AI Agents must strictly compute element boundaries based on the rules 
 ## 5.3 Checkbox
 1. Box 16×16px, Radius-XS, border Neutral-300
 2. Checked: Bg Primary-500, white check icon
-3. Checkbox-text gap: Space-S, text `text-body-main`
+3. Checkbox-text gap: Space-S (8px), text `text-body-main`
 
 ## 5.4 Radio
 1. Circle 16px, border Neutral-300; checked inner 8px Primary-500
-2. Group spacing: Space-M
+2. Group spacing: Space-M (16px) between parallel options
 3. Radio.Button: Default button style; selected bg Primary-500
 
 ## 5.5 Select
@@ -314,7 +314,7 @@ Style same as Select; tree node hover bg Primary-100
 
 ## 5.12 Form Container
 1. Two layouts: Horizontal (label left), Vertical (label top)
-2. Action buttons: Align right, gap Space-M, top margin Space-L
+2. Action buttons: Align right, gap Space-M (16px) between main/secondary actions, top margin Space-L (24px)
 3. Large forms: Wrap in Card, padding Space-L
 
 ---
@@ -416,7 +416,7 @@ Same as DatePicker calendar, with month switch
 2. Container: White bg, Radius-M, Shadow-3
     - Header: H60px, padding H Space-L, title H3, close icon 16px
     - Body: padding H Space-L, V Space-M; max height 60vh, scrollable
-    - Footer: padding V Space-M, H Space-L; buttons align right, gap Space-M
+    - Footer: padding V Space-M, H Space-L; buttons align right, gap Space-M (16px)
 3. Sizes: Small 480px, Standard 720px, Large 1000px
 
 ## 7.2 Drawer
