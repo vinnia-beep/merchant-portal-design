@@ -66,7 +66,7 @@ Our typography is divided into different hierarchies, utilizing `font-size`, `fo
 
 | Class / Mixin | Size | Line Height | Weight | Color | Scenario |
 | --- | --- | --- | --- | --- | --- |
-| **`heading-xl`** | 30px | 36px | 700 (Bold) | `var(--color-text-title)` | Page main titles (e.g., Good morning, Welcome!) |
+| **`heading-xl`** | 30px | 36px | 800 (Bold) | `var(--color-text-title)` | Page main titles (e.g., Good morning, Welcome!) |
 | **`heading-m`** | 17px | 22px | 700 (Bold) | `var(--color-text-title)` | Card titles, chart titles, module titles |
 | **`heading-s`** | 14px | 20px | 600 (Semi-Bold) | `var(--color-text-title)` | Key items in cards, subtitles, names, focus fields |
 | **`body-regular`**| 13px | 20px | 400 (Regular) | `var(--color-text-body)` | Body text, explanations, summaries, table content |
